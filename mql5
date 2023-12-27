@@ -1,0 +1,94 @@
+mql5
+//+------------------------------------------------------------------+
+//|                                            Market Sniper Zone.mq5|
+//|                            Copyright 2022, Forex Robot Easy Team |
+//|                                          https://forexroboteasy.com|
+//+------------------------------------------------------------------+
+
+#property copyright 'Copyright 2022, Forex Robot Easy Team'
+#property link      'https://forexroboteasy.com'
+#property version   '1.00'
+#property strict
+
+// Input parameters
+input ENUM_TIMEFRAMES Timeframe = PERIOD_H1; // Timeframe for analysis
+
+input int Zone1Level = 30; // Level for Zone 1
+input int Zone2Level = 50; // Level for Zone 2
+input int Zone3Level = 70; // Level for Zone 3
+input int Zone4Level = 90; // Level for Zone 4
+
+//+------------------------------------------------------------------+
+//| Custom indicator initialization function                         |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+   return(INIT_SUCCEEDED);
+}
+
+//+------------------------------------------------------------------+
+//| Custom indicator deinitialization function                       |
+//+------------------------------------------------------------------+
+void OnDeinit(const int reason)
+{
+
+}
+
+//+------------------------------------------------------------------+
+//| Custom indicator iteration function                              |
+//+------------------------------------------------------------------+
+void OnCalculate(const int rates_total,
+                 const int prev_calculated,
+                 const datetime &time[],
+                 const double &open[],
+                 const double &high[],
+                 const double &low[],
+                 const double &close[],
+                 const long &tick_volume[],
+                 const long &volume[],
+                 const int &spread[])
+{
+   // Calculate reversal zones
+   for(int i = prev_calculated; i < rates_total; i++)
+   {
+      double zone = iCustom(NULL, Timeframe, 'Market Sniper Zone', Zone1Level, Zone2Level, Zone3Level, Zone4Level);
+
+      // Check for potential entry points
+      if (close[i] >= zone)
+      {
+         // Perform buy trade
+         // ...
+         // ...
+      }
+      else if (close[i] <= zone)
+      {
+         // Perform sell trade
+         // ...
+         // ...
+      }
+   }
+}
+
+//+------------------------------------------------------------------+
+//| Custom indicator function                                         |
+//+------------------------------------------------------------------+
+double iCustom(const string symbol,
+               const ENUM_TIMEFRAMES timeframe,
+               const string name,
+               const int zone1Level,
+               const int zone2Level,
+               const int zone3Level,
+               const int zone4Level)
+{
+   double zone = 0.0;
+
+   // Perform analysis on the forex market
+   // ...
+   // ...
+
+   // Calculate the reversal zones based on the analysis
+   // ...
+   // ...
+
+   return zone;
+}
